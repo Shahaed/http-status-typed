@@ -1,0 +1,29 @@
+{
+  "name": "http-status-typed",
+  "version": "1.0.0",
+  "description": "HTTP staus codes, but in a typescript enum so you have a parent type",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "node",
+    "http",
+    "apache",
+    "HttpStatus",
+    "httpclient",
+    "status",
+    "codes",
+    "enum",
+    "typescript"
+  ],
+  "author": "Shahaed Hasan",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shahaed/http-status-typed.git"
+  }
+}
