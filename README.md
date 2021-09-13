@@ -2,7 +2,7 @@
 
 This is [http-status-codes](https://github.com/prettymuchbryce/http-status-codes/blob/master/README.md) but the status codes are wrapped in an enum so you can have a Typescript type for the status codes.
 
-> Version 1.0.1 significantly reduces the size of the package. Good for browsers now.
+> Version 1.0.1 significantly reduces the size of the package.
 
 ## Installation
 
