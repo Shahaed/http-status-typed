@@ -2,6 +2,8 @@
 
 This is [http-status-codes](https://github.com/prettymuchbryce/http-status-codes/blob/master/README.md) but the status codes are wrapped in an enum so you can have a Typescript type for the status codes.
 
+> Version 1.0.1 significantly reduces the size of the package. Good for browsers now.
+
 ## Installation
 
 ```console
@@ -28,6 +30,7 @@ function handleResponse(): ApiResponse {
 }
 
 ```
+
 There is no selective import. If you care about a few extra bytes of data you probably don't want to use this. Also the usage is probably similar for javascript? Idk.
 
 ## Codes
