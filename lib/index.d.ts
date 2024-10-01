@@ -2,7 +2,7 @@
  * Hypertext Transfer Protocol (HTTP) response status codes.
  * @see {@link https://tools.ietf.org/html/rfc7231#section-6.3.3}
  */
-declare enum HttpStatusCode {
+export declare enum HttpStatusCode {
     /**
      The 100 (Continue) status code indicates that the initial part of a
      request has been received and has not yet been rejected by the
@@ -325,5 +325,4 @@ declare enum HttpStatusCode {
      */
     NETWORK_AUTHENTICATION_REQUIRED = 511
 }
-
-export { HttpStatusCode, HttpStatusCode as default };
+export default HttpStatusCode;

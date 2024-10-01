@@ -1,10 +1,14 @@
 # http-status-typed
 
-This is [http-status-codes](https://github.com/prettymuchbryce/http-status-codes/blob/master/README.md) but the status codes are wrapped in an enum so you can have a Typescript type for the status codes.
+This is [http-status-codes](https://github.com/prettymuchbryce/http-status-codes/blob/master/README.md) but the status codes are wrapped in an enum so you can have a Typescript type for the status codes. The size of the package is also incredibly small (4kb uncompressed after tree shaking).
 
 > Version 1.0.1 significantly reduces the size of the package. Good for browsers now.
+
 > Version 1.0.2 supports both CommonJS and ES Modules but doubles the size of the package (since we're now publishing two files).
+
 > Version 2.0.0 only supports ES Modules.
+
+> Version 2.0.1 removes unneeded artifacts and reduces the size of the package.
 
 ## Installation
 
@@ -32,8 +36,6 @@ function handleResponse(): ApiResponse {
 }
 
 ```
-
-There is no selective import. If you care about a few extra bytes of data you probably don't want to use this. Also the usage is probably similar for javascript? Idk.
 
 ## Codes
 
