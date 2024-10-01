@@ -1,12 +1,28 @@
 {
   "name": "http-status-typed",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "HTTP status codes, but in a typescript enum so you have a parent type",
-  "main": "index.js",
+  "main": "dist/cjs/index.min.js",
+  "module": "dist/esm/index.min.js",
+  "types": "dist/esm/index.d.ts",
+  "type": "module",
+  "files": [
+    "/dist/**/*.min.js",
+    "/dist/**/*.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "scripts": {
-    "build": "tsc -p .",
-    "compress": "terser dist/index.js --compress --output dist/index.min.js",
-    "publish": "npm run build && npm run compress && cp dist/index.min.js ./index.js && cp dist/index.d.ts ."
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "compress:cjs": "terser dist/cjs/index.js --compress --output dist/cjs/index.min.js",
+    "compress:esm": "terser dist/esm/index.js --compress --output dist/esm/index.min.js",
+    "publish": "npm run build && npm run compress:cjs && npm run compress:esm"
   },
   "keywords": [
     "node",
@@ -24,8 +40,8 @@
   "author": "Shahaed Hasan",
   "license": "MIT",
   "devDependencies": {
-    "terser": "^5.8.0",
-    "typescript": "^4.4.3"
+    "terser": "^5.34.1",
+    "typescript": "^5.4.5"
   },
   "repository": {
     "type": "git",

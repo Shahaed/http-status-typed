@@ -325,4 +325,5 @@ declare enum HttpStatusCode {
      */
     NETWORK_AUTHENTICATION_REQUIRED = 511
 }
-export default HttpStatusCode;
+
+export { HttpStatusCode, HttpStatusCode as default };
