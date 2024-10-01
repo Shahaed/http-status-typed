@@ -1,28 +1,18 @@
 {
   "name": "http-status-typed",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "HTTP status codes, but in a typescript enum so you have a parent type",
-  "main": "dist/cjs/index.min.js",
-  "module": "dist/esm/index.min.js",
-  "types": "dist/esm/index.d.ts",
+  "main": "dist/index.min.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "files": [
     "/dist/**/*.min.js",
     "/dist/**/*.d.ts"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
-    }
-  },
   "scripts": {
-    "build": "npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "compress:cjs": "terser dist/cjs/index.js --compress --output dist/cjs/index.min.js",
-    "compress:esm": "terser dist/esm/index.js --compress --output dist/esm/index.min.js",
-    "publish": "npm run build && npm run compress:cjs && npm run compress:esm"
+    "build": "tsc -p tsconfig.json",
+    "compress": "terser dist/index.js --compress --output dist/index.min.js",
+    "publish": "npm run build && npm run compress"
   },
   "keywords": [
     "node",

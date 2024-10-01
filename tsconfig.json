@@ -3,6 +3,7 @@
   "compilerOptions": {
     // Generate d.ts files
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "module": "ES6"
   }
 }
