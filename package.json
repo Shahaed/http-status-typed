@@ -1,40 +1,65 @@
 {
   "name": "http-status-typed",
-  "version": "2.0.1",
-  "description": "HTTP status codes, but in a typescript enum so you have a parent type",
-  "main": "lib/index.min.js",
-  "types": "lib/index.d.ts",
-  "type": "module",
+  "version": "3.0.0",
+  "description": "HTTP status codes as TypeScript const enum - zero bundle size, compile-time inlined values (TypeScript only)",
+  "types": "index.d.ts",
   "files": [
-    "/lib/**/*.min.js",
-    "/lib/**/*.d.ts"
+    "index.d.ts"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "compress": "terser lib/index.js --compress --output lib/index.min.js",
-    "publish": "npm run build && npm run compress"
+    "publish": "npm run build",
+    "test": "npx jest",
+    "test:watch": "npx jest --watch",
+    "test:coverage": "npx jest --coverage",
+    "clean": "rm -rf index.d.ts index.js coverage",
+    "prepublishOnly": "npm run clean && npm run build && npm test",
+    "prepack": "npm run build",
+    "validate": "npm run build && npm run test && npm run test:coverage"
   },
   "keywords": [
-    "node",
+    "typescript",
+    "const-enum",
     "http",
+    "status",
+    "codes",
+    "compile-time",
+    "zero-bundle",
+    "inlined",
+    "type-safe",
+    "node",
     "apache",
     "HttpStatus",
     "httpclient",
-    "status",
-    "codes",
     "enum",
-    "typescript",
     "react",
-    "next"
+    "next",
+    "nextjs",
+    "vite",
+    "webpack"
   ],
   "author": "Shahaed Hasan",
   "license": "MIT",
   "devDependencies": {
-    "terser": "^5.34.1",
+    "@types/jest": "^29.5.14",
+    "ts-jest": "^29.3.4",
     "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "typescript": ">=4.1.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Shahaed/http-status-typed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shahaed/http-status-typed/issues"
+  },
+  "homepage": "https://github.com/Shahaed/http-status-typed#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

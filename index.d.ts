@@ -2,7 +2,7 @@
  * Hypertext Transfer Protocol (HTTP) response status codes.
  * @see {@link https://tools.ietf.org/html/rfc7231#section-6.3.3}
  */
-export declare enum HttpStatusCode {
+export declare const enum HttpStatusCode {
     /**
      The 100 (Continue) status code indicates that the initial part of a
      request has been received and has not yet been rejected by the
