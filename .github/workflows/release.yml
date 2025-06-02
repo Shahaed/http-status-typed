@@ -1,0 +1,101 @@
+name: Release & Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Build project
+        run: npm run build
+
+      - name: Verify build artifacts
+        run: |
+          test -f ./index.d.ts || (echo "Missing index.d.ts" && exit 1)
+
+      - name: Get release version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Verify package.json version
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          RELEASE_VERSION=${{ steps.get_version.outputs.VERSION }}
+          RELEASE_VERSION=${RELEASE_VERSION#v}
+          echo "Package version: $PACKAGE_VERSION"
+          echo "Release version: $RELEASE_VERSION"
+          if [ "$PACKAGE_VERSION" != "$RELEASE_VERSION" ]; then
+            echo "Version mismatch!"
+            exit 1
+          fi
+
+      - name: Create npm package
+        run: npm pack
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Upload package as release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./http-status-typed-${{ steps.get_version.outputs.VERSION }}.tgz
+          asset_name: http-status-typed-${{ steps.get_version.outputs.VERSION }}.tgz
+          asset_content_type: application/gzip
+
+      - name: Create GitHub deployment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.ref,
+              environment: 'npm',
+              description: 'Published to npm registry'
+            })
+
+  notify:
+    name: Notify Release
+    runs-on: ubuntu-latest
+    needs: publish
+    if: always()
+
+    steps:
+      - name: Get release info
+        id: release_info
+        run: |
+          echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          echo "RELEASE_NAME=${{ github.event.release.name }}" >> $GITHUB_OUTPUT
+
+      - name: Notify success
+        if: needs.publish.result == 'success'
+        run: |
+          echo "✅ Successfully published ${{ steps.release_info.outputs.VERSION }} to npm!"
+          echo "Release: ${{ steps.release_info.outputs.RELEASE_NAME }}"
+          echo "https://www.npmjs.com/package/http-status-typed"
+
+      - name: Notify failure
+        if: needs.publish.result == 'failure'
+        run: |
+          echo "❌ Failed to publish ${{ steps.release_info.outputs.VERSION }} to npm!"
+          echo "Please check the logs and try again."
+          exit 1

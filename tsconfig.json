@@ -1,9 +1,15 @@
 {
   "include": ["src/**/*"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     // Generate d.ts files
     "declaration": true,
-    "outDir": "lib",
-    "module": "ES6"
+    "outDir": ".",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "strict": true,
+    // Allow const enum inlining (do not preserve)
+    "isolatedModules": false
   }
 }

@@ -1,0 +1,10 @@
+{
+  "low": true,
+  "moderate": true,
+  "high": false,
+  "critical": false,
+  "advisories": [],
+  "whitelist": [],
+  "report-type": "summary",
+  "output-format": "text"
+}
