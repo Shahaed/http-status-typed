@@ -11,11 +11,10 @@
     "publish": "npm run build",
     "test": "npx jest",
     "test:watch": "npx jest --watch",
-    "test:coverage": "npx jest --coverage",
-    "clean": "rm -rf index.d.ts index.js coverage",
+    "clean": "rm -rf index.d.ts index.js",
     "prepublishOnly": "npm run clean && npm run build && npm test",
     "prepack": "npm run build",
-    "validate": "npm run build && npm run test && npm run test:coverage"
+    "validate": "npm run build && npm run test"
   },
   "keywords": [
     "typescript",

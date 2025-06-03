@@ -3,11 +3,10 @@
 A zero runtime size impact enums of HTTP status codes.
 
 [![npm version](https://img.shields.io/npm/v/http-status-typed)](https://www.npmjs.com/package/http-status-typed)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)](package.json)
+[![Package Size](https://img.shields.io/bundlephobia/minzip/http-status-typed)](https://bundlephobia.com/result?p=http-status-typed)
 [![npm downloads](https://img.shields.io/npm/dm/http-status-typed)](https://www.npmjs.com/package/http-status-typed)
 [![CI](https://github.com/Shahaed/http-status-typed/workflows/CI/badge.svg)](https://github.com/Shahaed/http-status-typed/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/Shahaed/http-status-typed/branch/main/graph/badge.svg)](https://codecov.io/gh/Shahaed/http-status-typed)
-[![Package Size](https://img.shields.io/bundlephobia/minzip/http-status-typed)](https://bundlephobia.com/result?p=http-status-typed)
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)](package.json)
 
 ---
 
@@ -303,7 +302,7 @@ Works with TypeScript template out of the box!
 
 ## Testing
 
-This package includes a comprehensive test suite with 100% coverage:
+This package includes a comprehensive test suite validating all HTTP status codes:
 
 ```bash
 # Run tests
@@ -311,18 +310,17 @@ npm test
 
 # Run tests in watch mode
 npm run test:watch
-
-# Run tests with coverage
-npm run test:coverage
 ```
 
-### Test Coverage
+### Test Suite
 
-- **100+ test cases** covering all functionality
-- **4 test suites**: Core functionality, module exports, performance, and completeness
-- **100% code coverage** across statements, branches, functions, and lines
-- **Const enum specific testing**: Compile-time behavior verification
+- **85+ test cases** covering all HTTP status codes
+- **3 test suites**: Core functionality, module exports, and completeness validation
+- **Const enum verification**: Ensures all status codes compile to correct numeric values
 - **Type safety testing** for TypeScript compatibility
+- **Performance validation** for compile-time inlining behavior
+
+_Note: Coverage reporting is not applicable for const enums since they produce no runtime JavaScript code - all values are inlined at compile time._
 
 ## FAQ
 
