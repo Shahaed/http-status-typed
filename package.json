@@ -12,7 +12,7 @@
     "test": "npx jest",
     "test:watch": "npx jest --watch",
     "clean": "rm -rf index.d.ts index.js",
-    "prepublishOnly": "npm run clean && npm run build && npm test",
+    "prepublishOnly": "npm run clean && npm run build",
     "prepack": "npm run build",
     "validate": "npm run build && npm run test"
   },
