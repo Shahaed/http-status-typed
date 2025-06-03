@@ -48,14 +48,6 @@ jobs:
       - name: Run tests
         run: npx jest
 
-      - name: Run tests with coverage
-        run: npx jest --coverage
-
-      - name: Upload coverage reports to Codecov
-        if: matrix.node-version == 20
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
       - name: Build project
         run: npm run build
 
